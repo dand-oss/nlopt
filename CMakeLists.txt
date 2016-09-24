@@ -70,6 +70,13 @@ include (CheckCXXSymbolExists)
 include (CheckCXXCompilerFlag)
 include (CheckLibraryExists)
 
+###############
+# ASI default settings
+list(APPEND CMAKE_MODULE_PATH "$ENV{ASI}/cmake/Modules")
+include(asv_cmake_defaults)
+asv_cmake_defaults( )
+###############
+
 #==============================================================================
 # COMPILATION CHECKINGS and CONFIGURATION GENERATION
 #==============================================================================
@@ -237,7 +244,7 @@ install (FILES ${NLOPT_HEADERS} DESTINATION ${INSTALL_INCLUDE_DIR})
 set (nlopt_lib nlopt${NLOPT_SUFFIX})
 add_library (${nlopt_lib} ${NLOPT_SOURCES})
 target_link_libraries (${nlopt_lib} ${M_LIBRARY})
-
+install_static_pdb(nlopt) # ASV
 set_target_properties (${nlopt_lib} PROPERTIES SOVERSION 0)
 set_target_properties (${nlopt_lib} PROPERTIES VERSION 0.9.0)
 
