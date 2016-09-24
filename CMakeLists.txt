@@ -40,11 +40,11 @@ list (APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
 option (NLOPT_CXX "enable cxx routines" ON)
 option (NLOPT_FORTRAN "enable fortran tests" OFF)
 option (BUILD_SHARED_LIBS "Build NLopt as a shared library" ON)
-option (NLOPT_PYTHON "build python bindings" ON)
-option (NLOPT_OCTAVE "build octave bindings" ON)
-option (NLOPT_MATLAB "build matlab bindings" ON)
-option (NLOPT_GUILE "build guile bindings" ON)
-option (NLOPT_SWIG "use SWIG to build bindings" ON)
+option (NLOPT_PYTHON "build python bindings" OFF)
+option (NLOPT_OCTAVE "build octave bindings" OFF)
+option (NLOPT_MATLAB "build matlab bindings" OFF)
+option (NLOPT_GUILE "build guile bindings" OFF)
+option (NLOPT_SWIG "use SWIG to build bindings" OFF)
 
 if (CMAKE_SOURCE_DIR STREQUAL PROJECT_SOURCE_DIR)
   option (NLOPT_TESTS "build unit tests" ON)
@@ -94,6 +94,13 @@ include (CheckCCompilerFlag)
 include (CheckCXXSymbolExists)
 include (CheckCXXCompilerFlag)
 include (CheckLibraryExists)
+
+###############
+# ASI default settings
+list(APPEND CMAKE_MODULE_PATH "$ENV{ASV_CMAKE}")
+include(asv_cmake_defaults)
+asv_cmake_defaults( )
+###############
 
 #==============================================================================
 # COMPILATION CHECKINGS and CONFIGURATION GENERATION
